@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SocialIcon from "./SocialIcon";
 import {
   faGithub,
   faInstagram,
@@ -9,7 +9,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function Hero() {
   return (
-    <section className="container mx-auto max-w-5xl pt-34 pb-25 px-4">
+    <section className="container mx-auto max-w-5xl pt-25 pb-25 px-4">
       <div className="flex flex-col md:flex-row items-center justify-between">
         {/* Left - Text & Social Icons */}
         <div className="text-center md:text-left space-y-4 ">
@@ -60,7 +60,7 @@ function Hero() {
 
         {/* Right - Profile Image */}
         <img
-          src="/avatar.img.webp"
+          src="avatar.img.webp"
           alt="Yatharth"
           className="rounded-full w-100 h-100  shadow-lg"
         />
@@ -68,18 +68,5 @@ function Hero() {
     </section>
   );
 }
-
-// Reusable Social Icon Component
-const SocialIcon = ({ href, icon, color, label }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={label}
-    className={`${color} text-3xl transition-transform transform hover:scale-110`}
-  >
-    <FontAwesomeIcon icon={icon} title={label} />
-  </a>
-);
 
 export default Hero;
