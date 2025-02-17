@@ -43,7 +43,7 @@ const skillImages = [
 
 function Skills() {
   return (
-    <section id="skills" className="py-28 bg-gray-900 text-white text-center">
+    <section id="skills" className="py-25 bg-gray-900 text-white text-center">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-4xl font-semibold mb-8 text-yellow-600 comforter-brush-regular">
           My Skills
