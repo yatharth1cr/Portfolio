@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link for routing
 import { FaBars, FaTimes } from "react-icons/fa";
 
-function Nav() {
+export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -24,8 +24,8 @@ function Nav() {
         <ul
           className={`absolute md:static top-16 left-0 w-full md:w-auto md:flex space-y-4 md:space-y-0 md:space-x-6 items-center text-lg bg-custom1 md:bg-transparent transition-all duration-300 ease-in ${
             isOpen
-              ? "flex flex-col py-4 opacity-0"
-              : "hidden md:flex opacity-100"
+              ? "flex flex-col py-4 opacity-100"
+              : "hidden md:flex md:opacity-100 opacity-0"
           }`}
         >
           {[
@@ -58,5 +58,3 @@ function Nav() {
     </header>
   );
 }
-
-export default Nav;
