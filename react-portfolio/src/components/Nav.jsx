@@ -46,12 +46,25 @@ export default function Nav() {
             </li>
           ))}
           <li>
-            <button
+            {/* <button
               className="bg-yellow-700 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition"
               aria-label="Buy me a coffee"
             >
               Buy me a coffee
-            </button>
+            </button> */}
+            <a
+              target="_blank"
+              id="resume-button-nav"
+              href="/YatharthGiri-CV.pdf"
+              download
+            >
+              <button
+                type="button"
+                className="bg-yellow-700 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition cursor-pointer"
+              >
+                Resume
+              </button>
+            </a>
           </li>
         </ul>
       </nav>

@@ -4,46 +4,118 @@ import {
   faLinkedin,
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import SocialIcon from "./SocialIcon";
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import emailjs from "emailjs-com";
 
-function Contact() {
+const initialValues = {
+  name: "",
+  email: "",
+  message: "",
+};
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .required("Name is required")
+    .min(3, "Name must be at least 3 characters"),
+  email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email format"),
+  message: Yup.string()
+    .required("Message is required")
+    .min(10, "Message must be at least 10 characters"),
+});
+
+const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+  try {
+    await emailjs.send(
+      "service_cugamnh", // EmailJS service ID
+      "template_pbwx7c9", // EmailJS template ID
+      values,
+      "t0NBrwZ13X2-eqo-1" // EmailJS public key
+    );
+    console.log("Message sent successfully!");
+    resetForm();
+  } catch (error) {
+    console.log("Failed to send message.", error);
+    alert("Failed to send message.");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
+const Contact = () => {
   return (
-    <div className="text-center py-12">
-      <h1 className="text-3xl  mb-4 comforter-brush-regular">Contact</h1>
-      <form className="max-w-lg mx-auto space-y-6">
-        <div className="flex flex-col">
-          <input
-            id="name"
-            type="text"
-            placeholder="Your Name"
-            className="p-3 border border-gray-300 rounded-md text-l"
-          />
-        </div>
-        <div className="flex flex-col">
-          <input
-            id="email"
-            type="email"
-            placeholder="Your Email"
-            className="p-3 border border-gray-300 rounded-md text-l"
-          />
-        </div>
-        <div className="flex flex-col">
-          <textarea
-            id="message"
-            placeholder="Your Message"
-            rows="4"
-            className="p-3 border border-gray-300 rounded-md text-l"
-          ></textarea>
-        </div>
-        <button
-          type="submit"
-          className="w-full py-3 bg-yellow-600 text-white text-l rounded-md hover:bg-yellow-500 transition-colors"
+    <>
+      <div className="max-w-lg mx-auto py-6 my-8 rounded-lg shadow-lg">
+        <h2 className="text-3xl text-yellow-500 text-center mb-4 comforter-brush-regular">
+          Contact Me
+        </h2>
+
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
         >
-          Send Message
-        </button>
-      </form>
+          {({ isSubmitting }) => (
+            <Form className="space-y-4">
+              <div>
+                <Field
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  className="w-full p-2 border border-gray-300 rounded"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+
+              <div>
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  className="w-full p-2 border border-gray-300 rounded"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+
+              <div>
+                <Field
+                  as="textarea"
+                  name="message"
+                  placeholder="Your Message"
+                  className="w-full p-2 border border-gray-300 rounded"
+                />
+                <ErrorMessage
+                  name="message"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full text-white p-2 rounded transition ${
+                  isSubmitting ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+                }`}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
 
       <div className="mt-8">
         <div className="flex justify-center space-x-6 text-2xl">
@@ -79,8 +151,8 @@ function Contact() {
           />
         </div>
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default Contact;

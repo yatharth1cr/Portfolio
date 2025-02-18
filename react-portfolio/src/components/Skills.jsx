@@ -43,9 +43,9 @@ const skillImages = [
 
 function Skills() {
   return (
-    <section id="skills" className="py-25 bg-gray-900 text-white text-center">
+    <section id="skills" className="py-24 bg-gray-900 text-white text-center">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-4xl font-semibold mb-8 text-yellow-600 comforter-brush-regular">
+        <h2 className="text-4xl font-semibold mb-10 text-yellow-600 comforter-brush-regular">
           My Skills
         </h2>
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center">
