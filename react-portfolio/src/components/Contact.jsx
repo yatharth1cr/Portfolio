@@ -8,6 +8,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import SocialIcon from "./SocialIcon";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { toast, Toaster } from "react-hot-toast";
 import emailjs from "emailjs-com";
 
 const initialValues = {
@@ -31,16 +32,21 @@ const validationSchema = Yup.object({
 const handleSubmit = async (values, { setSubmitting, resetForm }) => {
   try {
     await emailjs.send(
-      "service_cugamnh", // EmailJS service ID
+      "service_gkli8oj", // EmailJS service ID
       "template_pbwx7c9", // EmailJS template ID
-      values,
+      {
+        from_name: values.name,
+        from_email: values.email,
+        message: values.message,
+      },
       "t0NBrwZ13X2-eqo-1" // EmailJS public key
     );
-    console.log("Message sent successfully!");
+
+    toast.success("Message sent successfully!");
     resetForm();
   } catch (error) {
-    console.log("Failed to send message.", error);
-    alert("Failed to send message.");
+    toast.error("Failed to send message.");
+    console.error("Error sending message:", error);
   } finally {
     setSubmitting(false);
   }
@@ -49,6 +55,9 @@ const handleSubmit = async (values, { setSubmitting, resetForm }) => {
 const Contact = () => {
   return (
     <>
+      {/* Toaster for notifications */}
+      <Toaster position="top-center" />
+
       <div className="max-w-lg mx-auto py-6 my-8 rounded-lg shadow-lg">
         <h2 className="text-3xl text-yellow-500 text-center mb-4 comforter-brush-regular">
           Contact Me
@@ -61,6 +70,7 @@ const Contact = () => {
         >
           {({ isSubmitting }) => (
             <Form className="space-y-4">
+              {/* Name Field */}
               <div>
                 <Field
                   type="text"
@@ -75,6 +85,7 @@ const Contact = () => {
                 />
               </div>
 
+              {/* Email Field */}
               <div>
                 <Field
                   type="email"
@@ -89,6 +100,7 @@ const Contact = () => {
                 />
               </div>
 
+              {/* Message Field */}
               <div>
                 <Field
                   as="textarea"
@@ -103,11 +115,14 @@ const Contact = () => {
                 />
               </div>
 
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-full text-white p-2 rounded transition ${
-                  isSubmitting ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+                  isSubmitting
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-blue-500 hover:bg-blue-600"
                 }`}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
@@ -117,6 +132,7 @@ const Contact = () => {
         </Formik>
       </div>
 
+      {/* Social Icons */}
       <div className="mt-8">
         <div className="flex justify-center space-x-6 text-2xl">
           <SocialIcon
