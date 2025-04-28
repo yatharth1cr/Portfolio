@@ -1,5 +1,23 @@
 const projects = [
   {
+    title: "AI Resume Generator",
+    previewImg: "/LightHome.png",
+    description:
+      "AI-Resume-Generator is a powerful tool designed to help users create professional and tailored resumes effortlessly. By leveraging artificial intelligence, this application ensures that your resume stands out and aligns with industry standards.",
+    tech: [
+      "React.js",
+      "Redux",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "CohereAI API",
+      "Vercel",
+    ],
+    liveDemo: "https://ai-resume-generator-1j18.vercel.app/",
+    github: "https://github.com/yatharth1cr/AI-Resume-Generator",
+  },
+  {
     title: "Tourest",
     previewImg: "/tourestReact.png",
     description:

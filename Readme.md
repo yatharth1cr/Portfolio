@@ -1,4 +1,6 @@
-# Yatharth Raj Giri - Portfolio
+# Portfolio - Yatharth Raj Giri
+
+<a href="https://portfolio-five-olive-73.vercel.app/"><strong>➥ Live Demo</strong></a>
 
 Welcome to my portfolio repository! This project showcases my skills, projects, and contact information. It is built using **React** and **Vite**, with a focus on responsive design and smooth user experience.
 
@@ -29,6 +31,13 @@ Here are some of the technologies and tools I work with:
 - **Database Management**, **Terminal**
 
 ## Projects
+
+### AI Resume Generator
+
+- **Description:** AI-Resume-Generator is a powerful tool designed to help users create professional and tailored resumes effortlessly. By leveraging artificial intelligence, this application ensures that your resume stands out and aligns with industry standards.
+- **Tech Stack:** React.js, Redux, Tailwind CSS, Node.js, Express.js, MongoDB, CohereAI API, Vercel
+- **Live Demo:** [ AI Resume Generator](https://ai-resume-generator-1j18.vercel.app/),
+- **Github:** [AI Resume Generator Repository](https://github.com/yatharth1cr/AI-Resume-Generator),
 
 ### Tourest
 
